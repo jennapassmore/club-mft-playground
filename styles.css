@@ -2,7 +2,6 @@
    Flat color blocks, real logo + icons (assets.css), Caprasimo for big
    moments, Futura for everything else. */
 
-@font-face { font-family: "Caprasimo"; src: url("assets/fonts/Caprasimo-Regular.ttf") format("truetype"); font-display: swap; }
 
 :root {
   --sand: #F5EDE2;
