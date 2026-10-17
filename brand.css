@@ -116,7 +116,7 @@ figcaption { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; o
 .sticker > svg text { font-family: var(--display); }
 .sticker.deco { filter: none; }
 
-.sticker > svg text.retro { font-family: Caprasimo, "Cooper Black", "Arial Rounded MT Bold", serif; font-weight: 400; }
+.sticker > svg text.retro, .sticker > svg tspan.retro { font-family: Caprasimo, "Cooper Black", "Arial Rounded MT Bold", serif; font-weight: 400; }
 
 .back { justify-self: start; margin-bottom: -36px; font-weight: 700; font-size: 15px; color: var(--midnight); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .back:hover { color: var(--red); }
@@ -136,3 +136,6 @@ section .why { margin: 16px 0 0; }
 .words { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
 .words li { background: var(--bg); color: var(--midnight); font-weight: 700; font-size: 14px; letter-spacing: .02em; padding: 8px 14px; border-radius: 999px; transform: rotate(var(--r, 0deg)); }
 .words li:nth-child(1) { --r: -2deg; } .words li:nth-child(2) { --r: 1.5deg; } .words li:nth-child(3) { --r: -1deg; } .words li:nth-child(4) { --r: 2deg; }
+
+/* tagline under the logo: longer than "PLAYGROUND", so a little less tracking */
+.logos .lockup-sub { letter-spacing: .22em; font-size: 11.5px; text-align: center; white-space: nowrap; }

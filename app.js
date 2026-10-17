@@ -113,11 +113,7 @@
   /* ---------- home ---------- */
 
   var COMING = [
-    { n: "02", name: "OH, HEY", q: "What if coming back didn\u2019t mean catching up?" },
-    { n: "03", name: "GIMME FIVE", q: "What if five minutes was actually enough?" },
-    { n: "04", name: "ABSOLUTELY NOT", q: "What if the product knew when to leave you alone?" },
-    { n: "05", name: "AFTER PARTY", q: "What if the dance floor was just the beginning?" },
-    { n: "06", name: "HOUSE PARTY", q: "What if finding your mom community didn\u2019t require a group chat with 87 unread messages?" }
+    { n: "04", name: "AFTER PARTY", q: "What if the dance floor was just the beginning?" }
   ];
 
   // The landing page is a binder cover: logo + voice on the left, stickers
@@ -138,7 +134,7 @@
             h("span", { class: "m logo hero-logo", "aria-hidden": "true" }),
             h("span", { class: "hero-sub", "aria-hidden": "true", text: "PLAYGROUND" })
           ]),
-          h("p", { class: "voice", text: "Little experiments for helping moms come back to themselves." })
+          h("p", { class: "voice", text: "Product experiments for helping moms come back to themselves." })
         ]),
         stickers("cover-fly", S.fly)
       ])
@@ -157,10 +153,9 @@
           h("span", { class: "blurb-toggle", "aria-hidden": "true" })
         ]),
         h("div", { class: "blurb-body" }, [
-          h("p", { text: "Club MFT is a monthly membership from Moms Feelin\u2019 Themselves. Each month has one theme and one practice a week." }),
+          h("p", { text: "Club MFT is a monthly membership from Moms Feelin\u2019 Themselves, with a new theme each month and one practice a week." }),
           h("p", { class: "blurb-hook", text: "But what about the moments in between, when a mom is on her own?" }),
-          h("p", { text: "That\u2019s what this playground is for. We\u2019re trying out new ideas for Club MFT, and each experiment asks a small question about one big one: what would a wellness product look like if it refused to become another thing moms have to keep up with?" }),
-          h("p", { text: "They\u2019re not the real thing, so tap around and tell us what you\u2019d keep!" })
+          h("p", { text: "I got curious about what a product for moms could feel like if it gave them less to manage, decide, track and keep up with. So I made some things clickable." })
         ])
       ]),
 
@@ -169,11 +164,29 @@
         h("a", { class: "exp exp-live", href: "#/01" }, [
           h("span", { class: "exp-num", text: "01" }),
           h("span", { class: "exp-body" }, [
-            h("span", { class: "exp-name", text: "Club MFT Mood Ring" }),
+            h("span", { class: "exp-name", text: "Mood Ring" }),
             h("span", { class: "exp-desc", text: "What if figuring out what you need wasn\u2019t another thing you had to figure out?" }),
             h("span", { class: "soon-tag play-tag", text: "Play with it" })
           ]),
           h("span", { class: "mood-ring", "aria-hidden": "true" }, [h("i", { class: "pupil" })])
+        ]),
+        h("a", { class: "exp exp-live exp-room", href: "#/02" }, [
+          h("span", { class: "exp-num", text: "02" }),
+          h("span", { class: "exp-body" }, [
+            h("span", { class: "exp-name", text: "Break Room" }),
+            h("span", { class: "exp-desc", text: "What if you didn\u2019t have to calm the fuck down?" }),
+            h("span", { class: "soon-tag play-tag", text: "Play with it" })
+          ]),
+          h("span", { class: "room-door", "aria-hidden": "true" }, [h("i")])
+        ]),
+        h("a", { class: "exp exp-live exp-friends", href: "#/03" }, [
+          h("span", { class: "exp-num", text: "03" }),
+          h("span", { class: "exp-body" }, [
+            h("span", { class: "exp-name", text: "Mom Friends" }),
+            h("span", { class: "exp-desc", text: "What if making mom friends didn\u2019t feel like another job?" }),
+            h("span", { class: "soon-tag play-tag", text: "Play with it" })
+          ]),
+          h("span", { class: "mini-ticket", "aria-hidden": "true" }, [h("i"), h("b")])
         ])
       ]),
 
@@ -193,21 +206,22 @@
 
       h("section", { "aria-labelledby": "also" }, [
         h("h2", { class: "label", id: "also", text: "Also in here" }),
-        h("a", { class: "exp exp-board", href: "brand.html" }, [
-          h("span", { class: "exp-body" }, [
-            h("span", { class: "exp-name", text: "Brand Board" }),
-            h("span", { class: "exp-desc", text: "What if a brand felt like a messy bun and a trapper keeper?" })
-          ]),
-          h("span", { class: "board-chips", "aria-hidden": "true" },
-            ["#D33141", "#F7D1E8", "#ED79B9", "#443055", "#E0CEFB", "#F4B84F", "#F5EDE2"].map(function (c) {
-              return h("i", { style: "background:" + c });
-            }))
+        h("div", { class: "board-wrap" }, [
+          h("a", { class: "exp exp-board", href: "brand.html" }, [
+            h("span", { class: "exp-body" }, [
+              h("span", { class: "exp-name", text: "Brand Board" }),
+              h("span", { class: "exp-desc", text: "What if a brand felt like a messy bun and a trapper keeper?" })
+            ]),
+            h("span", { class: "venn", "aria-hidden": "true" }, [h("i"), h("i"), h("i")])
+          ])
         ])
       ]),
 
       h("section", { class: "pile-wrap", "aria-label": "Stickers" }, [
         pile("bottom")
-      ])
+      ]),
+
+      h("p", { class: "home-sign", text: "\u2764\uFE0F Made with love and curiosity. Not an official Club MFT product." })
     ]);
     mount(view);
     lookAtPointer(view.querySelector(".exp-live"));
@@ -236,7 +250,7 @@
 
   var state;
   function resetState() {
-    state = { step: "need", need: null, time: null, variant: 0, feeling: null, revealed: false };
+    state = { step: "need", need: null, time: null, variant: 0, feeling: null, revealed: false, unsure: false };
   }
   resetState();
 
@@ -256,7 +270,7 @@
 
   function stepNeed() {
     return h("div", { class: "view step" }, [
-      h("p", { class: "kicker", text: "Club MFT Mood Ring" }),
+      h("p", { class: "kicker", text: "Mood Ring" }),
       h("h1", { class: "headline", "data-focus": true, text: "What do you need today?" }),
       h("h2", { class: "ask", id: "ask-need", text: "I need to..." }),
       h("ul", { class: "tiles", "aria-labelledby": "ask-need" }, NEEDS.map(function (n) {
@@ -265,11 +279,21 @@
             class: "tile", type: "button",
             onclick: function (e) {
               flipHaloFrom(e.currentTarget.querySelector(".halo-tile"), n.id);
-              state.need = n.id; state.variant = 0; go("time");
+              state.need = n.id; state.unsure = false; state.variant = 0; go("time");
             }
           }, [tileRing(n.id), h("span", { class: "tile-text", text: n.label })])
         ]);
-      }))
+      })),
+      h("div", { class: "unsure-row" }, [
+        h("button", {
+          class: "quiet quiet-big", type: "button",
+          onclick: function () {
+            // she doesn't know, so we pick for her; the ring is a surprise until the result
+            state.need = NEEDS[Math.floor(Math.random() * NEEDS.length)].id;
+            state.unsure = true; state.variant = 0; go("time");
+          }
+        }, ["I don\u2019t know what I need"])
+      ])
     ]);
   }
 
@@ -277,7 +301,8 @@
     var need = needById(state.need);
     return h("div", { class: "view step" }, [
       h("p", { class: "chosen", style: "--c:" + need.color + ";--tx:" + need.tx }, [
-        h("span", { text: "I need to " }), h("strong", { text: need.label })
+        state.unsure ? h("strong", { text: "I don\u2019t know what I need" })
+          : h("span", { text: "I need to " }), state.unsure ? null : h("strong", { text: need.label })
       ]),
       h("h1", { class: "headline", "data-focus": true, text: "How much time do you have?" }),
       h("ul", { class: "times", "aria-label": "Time available" }, TIMES.map(function (t) {
@@ -294,7 +319,7 @@
           ])
         ]);
       })),
-      backLink("change what I need", "need")
+      backLink(state.unsure ? "pick something" : "change what I need", "need")
     ]);
   }
 
@@ -508,18 +533,25 @@
   var WIDE = window.matchMedia("(min-width: 900px)");
   if (IS_EMBED) document.body.classList.add("embed");
 
-  function renderPhoneStage() {
+  var PHONE = {
+    "01": { name: "Mood Ring", q: "What if figuring out what you need wasn\u2019t another thing you had to figure out?", aside: "Shown on a phone, because that's where she'll be. Go ahead, tap around." },
+    "03": { name: "Mom Friends", q: "What if making mom friends didn\u2019t feel like another job?", aside: "Shown on a phone, because that's where she'll be. Every plan in here is made up. Nothing is saved or sent." },
+    "02": { name: "Break Room", q: "What if you didn\u2019t have to calm the fuck down?", aside: "Shown on a phone, because that's where she'll be. Nothing you type here is saved. Go ahead, make a mess." }
+  };
+
+  function renderPhoneStage(n) {
     barTag.textContent = "";
+    var P = PHONE[n];
     var frame = h("iframe", {
-      class: "phone-screen", src: "index.html#/01?embed",
-      title: "Club MFT Mood Ring on a phone"
+      class: "phone-screen", src: "index.html#/" + n + "?embed",
+      title: P.name + " on a phone"
     });
     var view = h("div", { class: "view stage-desk" }, [
       h("div", { class: "stage-note" }, [
-        h("p", { class: "kicker", text: "Experiment 01" }),
-        h("h1", { class: "mega-sm", "data-focus": true, text: "Club MFT Mood Ring" }),
-        h("p", { class: "voice", text: "What if figuring out what you need wasn\u2019t another thing you had to figure out?" }),
-        h("p", { class: "stage-aside", text: "Shown on a phone, because that's where she'll be. Go ahead, tap around." }),
+        h("p", { class: "kicker", text: "Experiment " + n }),
+        h("h1", { class: "mega-sm", "data-focus": true, text: P.name }),
+        h("p", { class: "voice", text: P.q }),
+        h("p", { class: "stage-aside", text: P.aside }),
         h("a", { class: "quiet", href: "#/" }, [h("span", { "aria-hidden": "true", text: "← " }), "back to the playground"])
       ]),
       h("div", { class: "phone" }, [
@@ -542,17 +574,30 @@
 
   function route() {
     var hash = (location.hash || "#/").split("?")[0];
+    var phone = WIDE.matches && !IS_EMBED;
+    route.inExp = false; route.inRoom = false; route.inFriends = false;
     if (hash === "#/01") {
       // re-entering from home always starts fresh
-      if (!route.inExp) resetState();
+      if (!route.wasExp) resetState();
       route.inExp = true;
-      if (WIDE.matches && !IS_EMBED) renderPhoneStage();
-      else renderExp();
+      if (phone) renderPhoneStage("01"); else renderExp();
+    } else if (hash === "#/02") {
+      route.inRoom = true;
+      if (!route.wasRoom && window.BreakRoom) window.BreakRoom.reset();
+      if (phone) renderPhoneStage("02");
+      else window.BreakRoom.render({ h: h, mount: mount, pile: pile, isEmbed: IS_EMBED, setTag: function (t) { barTag.textContent = t; } });
+    } else if (hash === "#/03") {
+      route.inFriends = true;
+      if (!route.wasFriends && window.MomFriends) window.MomFriends.reset();
+      if (phone) renderPhoneStage("03");
+      else window.MomFriends.render({ h: h, mount: mount, pile: pile, isEmbed: IS_EMBED, setTag: function (t) { barTag.textContent = t; } });
     } else {
-      route.inExp = false;
       renderHome();
     }
-    document.title = route.inExp ? "Club MFT Mood Ring · Club MFT Playground" : "Club MFT Playground";
+    route.wasFriends = route.inFriends;
+    route.wasExp = route.inExp; route.wasRoom = route.inRoom;
+    document.body.classList.toggle("in-room", route.inRoom && !phone);
+    document.title = route.inExp ? "Mood Ring \u00B7 Club MFT Playground" : route.inRoom ? "Break Room \u00B7 Club MFT Playground" : route.inFriends ? "Mom Friends \u00B7 Club MFT Playground" : "Club MFT Playground";
   }
   window.addEventListener("hashchange", route);
   if (!IS_EMBED) WIDE.addEventListener("change", route);
