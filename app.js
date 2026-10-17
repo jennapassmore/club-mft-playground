@@ -131,16 +131,17 @@
     var S = window.HOME_STICKERS || { fly: "", row: "" };
     return h("header", { class: "cover" }, [
       h("span", { class: "holes", "aria-hidden": "true" }, [h("i"), h("i"), h("i")]),
-      h("div", { class: "cover-main" }, [
-        h("h1", { class: "hero", "data-focus": true }, [
-          h("span", { class: "sr", text: "Club MFT Playground" }),
-          h("span", { class: "m logo hero-logo", "aria-hidden": "true" }),
-          h("span", { class: "hero-sub", "aria-hidden": "true", text: "PLAYGROUND" })
+      h("div", { class: "cover-inner" }, [
+        h("div", { class: "cover-main" }, [
+          h("h1", { class: "hero", "data-focus": true }, [
+            h("span", { class: "sr", text: "Club MFT Playground" }),
+            h("span", { class: "m logo hero-logo", "aria-hidden": "true" }),
+            h("span", { class: "hero-sub", "aria-hidden": "true", text: "PLAYGROUND" })
+          ]),
+          h("p", { class: "voice", text: "Little experiments for helping moms come back to themselves." })
         ]),
-        h("p", { class: "voice", text: "Little experiments for helping moms come back to themselves." })
-      ]),
-      stickers("cover-fly", S.fly),
-      stickers("sticker-row", S.row)
+        stickers("cover-fly", S.fly)
+      ])
     ]);
   }
 
@@ -148,23 +149,19 @@
     barTag.textContent = "";
     var view = h("div", { class: "view home" }, [
       cover(),
+      h("p", { class: "sticker-hint", text: "Stickers are for sticking. Drag \u2019em anywhere." }),
 
-      h("section", { class: "blurb", "aria-labelledby": "what" }, [
-        h("h2", { class: "label", id: "what", text: "What is this?" }),
-        h("p", { text: "Club MFT is a monthly membership from Moms Feelin\u2019 Themselves. Each month has one theme and one practice a week, already chosen, so there\u2019s nothing to pick and nothing to catch up on. Every month brings five parts:" }),
-        h("ul", { class: "pillars", "aria-label": "The five parts of Club MFT" }, [
-          ["Feel", "feel", "--petal", "--red"],
-          ["Move", "move", "--red", "--sand"],
-          ["Play", "play", "--lilac", "--midnight"],
-          ["Learn", "learn", "--midnight", "--lipstick"],
-          ["Together", "together", "--sunshine", "--midnight"]
-        ].map(function (p) {
-          return h("li", { style: "--bg:var(" + p[2] + ");--ic:var(" + p[3] + ");--tx:var(" + (p[2] === "--red" || p[2] === "--midnight" ? "--sand" : "--midnight") + ")" }, [
-            shape(p[1]), h("span", { text: p[0] })
-          ]);
-        })),
-        h("p", { text: "This playground is where we try out new ideas for Club MFT. Each experiment asks a small question about one big one: what would a wellness product look like if it refused to become another thing moms have to keep up with?" }),
-        h("p", { text: "They\u2019re not the real thing, so tap around and tell us what you\u2019d keep." })
+      h("details", { class: "blurb" }, [
+        h("summary", {}, [
+          h("span", { class: "blurb-title", text: "What is this?" }),
+          h("span", { class: "blurb-toggle", "aria-hidden": "true" })
+        ]),
+        h("div", { class: "blurb-body" }, [
+          h("p", { text: "Club MFT is a monthly membership from Moms Feelin\u2019 Themselves. Each month has one theme and one practice a week." }),
+          h("p", { class: "blurb-hook", text: "But what about the moments in between, when a mom is on her own?" }),
+          h("p", { text: "That\u2019s what this playground is for. We\u2019re trying out new ideas for Club MFT, and each experiment asks a small question about one big one: what would a wellness product look like if it refused to become another thing moms have to keep up with?" }),
+          h("p", { text: "They\u2019re not the real thing, so tap around and tell us what you\u2019d keep!" })
+        ])
       ]),
 
       h("section", { "aria-labelledby": "avail" }, [
@@ -173,7 +170,7 @@
           h("span", { class: "exp-num", text: "01" }),
           h("span", { class: "exp-body" }, [
             h("span", { class: "exp-name", text: "Club MFT Mood Ring" }),
-            h("span", { class: "exp-desc", text: "For when figuring out what you need feels like another thing you need to figure out." }),
+            h("span", { class: "exp-desc", text: "What if figuring out what you need wasn\u2019t another thing you had to figure out?" }),
             h("span", { class: "soon-tag play-tag", text: "Play with it" })
           ]),
           h("span", { class: "mood-ring", "aria-hidden": "true" }, [h("i", { class: "pupil" })])
@@ -199,7 +196,7 @@
         h("a", { class: "exp exp-board", href: "brand.html" }, [
           h("span", { class: "exp-body" }, [
             h("span", { class: "exp-name", text: "Brand Board" }),
-            h("span", { class: "exp-desc", text: "The logo, colors, type and stickers behind all of this." })
+            h("span", { class: "exp-desc", text: "What if a brand felt like a messy bun and a trapper keeper?" })
           ]),
           h("span", { class: "board-chips", "aria-hidden": "true" },
             ["#D33141", "#F7D1E8", "#ED79B9", "#443055", "#E0CEFB", "#F4B84F", "#F5EDE2"].map(function (c) {
@@ -209,8 +206,7 @@
       ]),
 
       h("section", { class: "pile-wrap", "aria-label": "Stickers" }, [
-        pile("bottom"),
-        h("p", { class: "pile-hint", text: "Stickers are for sticking. Drag \u2019em anywhere." })
+        pile("bottom")
       ])
     ]);
     mount(view);
@@ -522,7 +518,7 @@
       h("div", { class: "stage-note" }, [
         h("p", { class: "kicker", text: "Experiment 01" }),
         h("h1", { class: "mega-sm", "data-focus": true, text: "Club MFT Mood Ring" }),
-        h("p", { class: "voice", text: "For when figuring out what you need feels like another thing you need to figure out." }),
+        h("p", { class: "voice", text: "What if figuring out what you need wasn\u2019t another thing you had to figure out?" }),
         h("p", { class: "stage-aside", text: "Shown on a phone, because that's where she'll be. Go ahead, tap around." }),
         h("a", { class: "quiet", href: "#/" }, [h("span", { "aria-hidden": "true", text: "← " }), "back to the playground"])
       ]),
